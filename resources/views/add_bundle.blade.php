@@ -39,7 +39,7 @@
                     <th>ID</th>
                     <th>Name</th>
                     <th>Price</th>
-                    <th>Modifie</th>
+                    <th>Modify</th>
                 </tr>
 
                 @foreach ($bundles as $bundle)

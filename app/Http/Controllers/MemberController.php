@@ -63,7 +63,6 @@ class MemberController extends Controller
             $id = $request->member;
         }
 
-
         $bundle_duration = Bundle::find($request->bundle)->duration;
         $start_date = Carbon::now();
 
@@ -108,13 +107,18 @@ class MemberController extends Controller
             ]);
         }
 
-        Payement::create([
-            'member_id' => $id,
-            'bundle_id' => $request->bundle,
-            'amount' => $bundle->price,
-        ]);
+        $this->pay($id, $request->bundle);
 
         return redirect('show_membership');
+    }
+
+    public function pay($member_id, $bundle_id)
+    {
+        Payement::create([
+            'member_id' => $member_id,
+            'bundle_id' => $bundle_id,
+            'amount' => Bundle::find($bundle_id)->price,
+        ]);
     }
 
     public function show_membership()
@@ -152,7 +156,7 @@ class MemberController extends Controller
     {
         $bundle = Bundle::find($id);
         $bundles = Bundle::all();
-        return view('edit_bundle', compact('bundle','bundles'));
+        return view('edit_bundle', compact('bundle', 'bundles'));
     }
 
     public function save_bundle(Request $request, $id)
@@ -167,8 +171,50 @@ class MemberController extends Controller
     }
 
 
+    public function search_for_membership(Request $request)
+    {
+        $members = Member::whereAny(['first_name', 'last_name'], 'LIKE', '%' . $request->search . '%')->get('id');
 
+        $memberships = Membership::whereIn('member_id', $members)->get();
 
+        return view('show_membership', compact('memberships'));
+    }
+
+    public function delete_membership($id)
+    {
+        Membership::find($id)->delete();
+
+        return $this->show_membership();
+    }
+
+    public function renew_membership($id)
+    {
+        $membership = Membership::find($id);
+
+        $start_date = Carbon::createFromFormat('Y-m-d', $membership->end_date);
+        $end_date = '';
+
+        $bundle_name = $membership->bundle->name;
+
+        switch ($bundle_name) {
+            case 'month':
+                $this->$end_date = $start_date->addMonth()->toDateString();
+                break;
+            case 'week':
+                $this->$end_date = $start_date->addWeek()->toDateString();
+                break;
+            case 'day':
+                $this->$end_date = $start_date->addDay()->toDateString();
+                break;
+        }
+
+        $membership->end_date = $this->$end_date;
+        $membership->save();
+
+        $this->pay($membership->member_id, $membership->bundle_id);
+
+        return redirect()->back();
+    }
 
 
     public function setup()

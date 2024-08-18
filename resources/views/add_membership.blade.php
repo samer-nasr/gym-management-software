@@ -22,7 +22,7 @@
             <select class="input-style" name="member" id="">
                 <option value="">Select a Member</option>
                 @foreach ($members as $member)
-                <option value="{{$member->id}}">{{$member->first_name}}</option>
+                <option value="{{$member->id}}">{{$member->first_name}} {{$member->last_name}}</option>
                 @endforeach
             </select>
 

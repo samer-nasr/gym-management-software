@@ -76,7 +76,13 @@
     {
         text-align: center;
         font-size: 1.3em;
-        padding: 5px;
+        padding: 10px;
+    }
+
+    tr th
+    {
+        background-color: lightgrey;
+        opacity: 0.8;
     }
 
     td
@@ -105,7 +111,11 @@
         padding: 5px;
         margin: 0;
         background-color: lightblue;
-        opacity: 0.7;
+    }
+
+    .search-button:hover
+    {
+        opacity: 0.8;
     }
 
     .search-form
@@ -116,18 +126,36 @@
         margin-bottom: 10px;
     }
 
+
     .delete-button
     {
         background-color: red;
         border: 1px solid black;
+        border-radius: 12px;
         padding: 5px;
+    }
+
+    .delete-button:hover
+    {
+        opacity: 0.8;
     }
 
     .edit-button
     {
         background-color: blue;
         border: 1px solid black;
+        border-radius: 12px;
         padding: 5px;
+    }
+
+    .edit-button:hover
+    {
+        opacity: 0.8;
+    }
+
+    option
+    {
+        text-align: center;
     }
 
 

@@ -47,4 +47,10 @@ Route::get('/edit_bundle/{id}',[MemberController::class,'edit_bundle'])->name('e
 
 Route::post('/save_bundle/{id}',[MemberController::class,'save_bundle'])->name('save_bundle');
 
+Route::post('search_for_membership',[MemberController::class,'search_for_membership'])->name('search_for_membership');
+
+Route::get('delete_membership/{id}',[MemberController::class,'delete_membership'])->name('delete_membership');
+
+Route::get('renew_membership/{id}',[MemberController::class,'renew_membership'])->name('renew_membership');
+
 require __DIR__.'/auth.php';

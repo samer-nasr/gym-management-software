@@ -15,6 +15,14 @@
     <h2 class="title">Show membership</h2>
 
     <div class="center ">
+
+        <form action="{{url('search_for_membership')}}" method="POST" class="search-form">
+            @csrf
+            <label for="">Search:</label>
+            <input type="Search" name="search">
+            <input type="submit" value="Search" class="search-button">
+        </form>
+
         <table class="center">
             <tr>
                 <th>ID</th>
@@ -22,6 +30,7 @@
                 <th>Bundle</th>
                 <th>Start Date</th>
                 <th>End Date</th>
+                <th>Modify</th>
             </tr>
 
             @foreach ($memberships as $membership)
@@ -31,6 +40,12 @@
                 <td>{{ $membership->bundle->name }}</td>
                 <td>{{ $membership->start_date }}</td>
                 <td>{{ $membership->end_date }}</td>
+                <td>
+                    <div>
+                        <a class="delete-button" href="{{url('delete_membership',$membership->id)}}">Delete</a>
+                        <a class="edit-button" href="{{url('renew_membership' , $membership->id)}}">Renew</a>
+                    </div>
+                </td>
             </tr>
             @endforeach
         </table>
