@@ -41,9 +41,10 @@
                 <td>{{ $membership->start_date }}</td>
                 <td>{{ $membership->end_date }}</td>
                 <td>
-                    <div>
+                    <div class="buttons">
                         <a class="delete-button" href="{{url('delete_membership',$membership->id)}}">Delete</a>
                         <a class="edit-button" href="{{url('renew_membership' , $membership->id)}}">Renew</a>
+                        <a class="edit-button" href="{{url('edit_membership' , $membership->id)}}">Edit</a>
                     </div>
                 </td>
             </tr>

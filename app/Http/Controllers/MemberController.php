@@ -10,7 +10,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
-use function Laravel\Prompts\search;
 
 class MemberController extends Controller
 {
@@ -31,20 +30,48 @@ class MemberController extends Controller
             'address' => $request->address,
         ]);
 
-        return $this->show_member();
+        return redirect('show_member');
     }
 
     public function show_member()
     {
-        $members = Member::all();
+        $members = Member::latest()->simplePaginate(2);
         $bundles = Bundle::all();
         return view("show-member", compact('members', 'bundles'));
+    }
+
+    public function edit_member($id)
+    {
+        $member = Member::findOrFail($id);
+
+        return view('edit_member',compact('member'));
+    }
+
+    public function save_member($id)
+    {
+        $member = Member::findOrFail($id);
+
+        $member->first_name = request()->fname;
+        $member->last_name = request()->lname;
+        $member->phone = request()->phone;
+        $member->email = request()->email;
+        $member->address = request()->address;
+        $member->save();
+
+        return redirect('show_member');
+
+    }
+    public function delete_member($id)
+    {
+        Member::findOrFail($id)->delete();
+
+        return redirect('show_member');
     }
 
     public function search_for_member(Request $request)
     {
         $search = $request->search;
-        $members = Member::whereAny(['first_name', 'last_name'], 'LIKE', '%' . $search . '%')->get();
+        $members = Member::whereAny(['first_name', 'last_name'], 'LIKE', '%' . $search . '%')->simplePaginate(2);
         // $members = Member::where('first_name','LIKE','%'.$search.'%')->get();
         $bundles = Bundle::all();
         return view("show-member", compact('members', 'bundles'));
@@ -123,7 +150,7 @@ class MemberController extends Controller
 
     public function show_membership()
     {
-        $memberships = Membership::all();
+        $memberships = Membership::with('bundle','member')->get();
 
         return view('show_membership', compact('memberships'));
     }
@@ -214,6 +241,26 @@ class MemberController extends Controller
         $this->pay($membership->member_id, $membership->bundle_id);
 
         return redirect()->back();
+    }
+
+    public function edit_membership($id)
+    {
+
+        $membership = Membership::with('member')->find($id);
+
+        return view('edit_membership', compact('membership'));
+    }
+
+    public function save_membership($id, Request $request)
+    {
+        $membership = Membership::find($id);
+
+        $membership->start_date = $request->start_date;
+        $membership->end_date = $request->end_date;
+
+        $membership->save();
+
+        return redirect('show_membership');
     }
 
 

@@ -32,6 +32,7 @@
                 <th>Address</th>
                 <th>Created_at</th>
                 <th>Add Membership</th>
+                <th>Modify</th>
             </tr>
 
             @foreach ($members as $member)
@@ -54,9 +55,18 @@
                         <input type="submit" class="submit" value="Add">
                     </form>
                 </td>
+
+                <td>
+                   <a href="{{url('edit_member',$member->id)}}" class="submit">
+                    Edit
+                   </a>
+                </td>
             </tr>
             @endforeach
         </table>
+        <div>
+            {{$members->links()}}
+        </div>
     </div>
 </body>
 

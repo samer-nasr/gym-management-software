@@ -23,6 +23,7 @@
         border-radius: 12px 0;
     }
 
+
     .form-container
     {
         border: none;
@@ -36,6 +37,7 @@
         padding: 10px;
         font-weight: bold;
         font-size: 1.2em;
+        background-color: blue;
     }
 
     .submit:hover
@@ -60,6 +62,7 @@
         width: 300px;
         margin: 10px;
         opacity: 0.7;
+        background-color: lightgrey;
     }
 
     .input-style:hover
@@ -126,6 +129,13 @@
         margin-bottom: 10px;
     }
 
+    .buttons
+    {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
 
     .delete-button
     {
@@ -133,6 +143,7 @@
         border: 1px solid black;
         border-radius: 12px;
         padding: 5px;
+        margin-right: 3px;
     }
 
     .delete-button:hover
@@ -146,6 +157,7 @@
         border: 1px solid black;
         border-radius: 12px;
         padding: 5px;
+        margin-right: 3px;
     }
 
     .edit-button:hover
@@ -156,6 +168,8 @@
     option
     {
         text-align: center;
+        font-weight: bold;
+        font-size: 1.3em;
     }
 
 

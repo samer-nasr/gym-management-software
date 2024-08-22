@@ -27,6 +27,12 @@ Route::get('show_member',[MemberController::class,'show_member'])->name('show_me
 Route::post('/add_new_member',[MemberController::class,'add_new_member'])->name('add_new_member')
 ->middleware(['auth','verified']);
 
+Route::get('edit_member/{id}',[MemberController::class,'edit_member'])->name('edit_member');
+
+Route::post('save_member/{id}',[MemberController::class,'save_member'])->name('save_member');
+
+Route::get('delete_member/{id}',[MemberController::class,'delete_member'])->name('delete_member');
+
 Route::get('/add_membership',[MemberController::class, 'add_membership'])->name('add_membership');
 
 Route::get('/show_membership',[MemberController::class, 'show_membership'])->name('show_membership');
@@ -52,5 +58,9 @@ Route::post('search_for_membership',[MemberController::class,'search_for_members
 Route::get('delete_membership/{id}',[MemberController::class,'delete_membership'])->name('delete_membership');
 
 Route::get('renew_membership/{id}',[MemberController::class,'renew_membership'])->name('renew_membership');
+
+
+Route::get('edit_membership/{id}',[MemberController::class,'edit_membership'])->name('edit_membership');
+Route::post('save_membership/{id}',[MemberController::class,'save_membership'])->name('save_membership');
 
 require __DIR__.'/auth.php';
