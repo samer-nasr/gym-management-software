@@ -14,6 +14,25 @@
 
     @include('layouts.navigation')
     <h2 class="title">Home Page</h2>
+
+    <div class="items-container">
+        <div class="item">
+            <h2 class="item-title">Numbers of Members :</h2>
+            <h3 class="item-value">{{ $members_count }}</h3>
+        </div>
+
+        <div class="item">
+            <h2 class="item-title">Numbers of Memberships :</h2>
+            <h3 class="item-value">{{ $memberships_count }}</h3>
+        </div>
+
+        <div class="item">
+            <h2 class="item-title">Numbers of Bundles :</h2>
+            <h3 class="item-value">{{ $bundles_count }}</h3>
+        </div>
+    </div>
+
+    
 </body>
 
 </html>

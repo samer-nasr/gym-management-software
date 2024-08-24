@@ -1,19 +1,17 @@
 <style>
-    body
-        {
-            background-image: url('/images/img.jpg');
-            background-size: 100%;
-        }
+    body {
+        background-image: url('/images/img.jpg');
+        background-size: 100%;
 
-    .title
-    {
+    }
+
+    .title {
         text-align: center;
         font-size: 2em;
         font-weight: bold;
     }
 
-    .center
-    {
+    .center {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -21,16 +19,16 @@
         padding: 30px;
         border: 2px solid black;
         border-radius: 12px 0;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5),
+                -5px -5px 10px rgba(255, 255, 255, 0.7);
     }
 
 
-    .form-container
-    {
+    .form-container {
         border: none;
     }
 
-    .submit
-    {
+    .submit {
         width: 50%;
         border: 2px solid black;
         border-radius: 12px 0;
@@ -40,74 +38,63 @@
         background-color: blue;
     }
 
-    .submit:hover
-    {
+    .submit:hover {
         opacity: 0.8;
     }
 
-    .form-title
-    {
+    .form-title {
         font-size: 1.5em;
         font-weight: bold;
     }
 
-    label
-    {
+    label {
         font-weight: bold;
         font-size: 1.2em;
     }
 
-    .input-style
-    {
+    .input-style {
         width: 300px;
         margin: 10px;
         opacity: 0.7;
         background-color: lightgrey;
     }
 
-    .input-style:hover
-    {
+    .input-style:hover {
         opacity: 1;
     }
 
-    tr
-    {
+    tr {
         border: 1px solid black;
     }
 
-    th , td
-    {
+    th,
+    td {
         text-align: center;
         font-size: 1.3em;
         padding: 10px;
     }
 
-    tr th
-    {
+    tr th {
         background-color: lightgrey;
         opacity: 0.8;
     }
 
-    td
-    {
+    td {
         font-weight: bold;
     }
 
-    th
-    {
+    th {
         width: 10em;
         font-weight: bolder;
     }
 
-    .column-container
-    {
+    .column-container {
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
-    .search-button
-    {
+    .search-button {
         font-weight: bold;
         font-size: 1.2em;
         border: 1px solid black;
@@ -116,29 +103,25 @@
         background-color: lightblue;
     }
 
-    .search-button:hover
-    {
+    .search-button:hover {
         opacity: 0.8;
     }
 
-    .search-form
-    {
+    .search-form {
         display: flex;
         align-items: center;
         justify-content: space-around;
         margin-bottom: 10px;
     }
 
-    .buttons
-    {
+    .buttons {
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
 
 
-    .delete-button
-    {
+    .delete-button {
         background-color: red;
         border: 1px solid black;
         border-radius: 12px;
@@ -146,13 +129,11 @@
         margin-right: 3px;
     }
 
-    .delete-button:hover
-    {
+    .delete-button:hover {
         opacity: 0.8;
     }
 
-    .edit-button
-    {
+    .edit-button {
         background-color: blue;
         border: 1px solid black;
         border-radius: 12px;
@@ -160,17 +141,58 @@
         margin-right: 3px;
     }
 
-    .edit-button:hover
-    {
+    .edit-button:hover {
         opacity: 0.8;
     }
 
-    option
-    {
+    option {
         text-align: center;
         font-weight: bold;
         font-size: 1.3em;
     }
 
+    .items-container {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-around;
+        width: 100vw;
+        height: 100vh;
+    }
 
+    .item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 25%;
+        height: 20%;
+        margin-top: 5%;
+        border: 2px solid black;
+        border-radius: 12px;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5),
+        -5px -5px 10px rgba(255, 255, 255, 0.7);
+        background-color: lightgrey;
+        opacity: 0.8;
+    }
+
+    .item:hover
+    {
+        opacity: 1;
+    }
+
+    .item .item-title
+    {
+        font-size: 1.5rem;
+        font-weight: bold;
+        cursor: default;
+    }
+
+    .item .item-value
+    {
+        font-size: 1.1rem;
+        font-weight: 900;
+        color: rgb(4, 4, 65);
+        cursor: default;
+
+    }
 </style>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
+
 <body>
 
     @include('layouts.navigation')
@@ -16,7 +18,7 @@
 
     <div class="center ">
 
-        <form action="{{url('search_for_membership')}}" method="POST" class="search-form">
+        <form action="{{url('search_for_membership')}}" method="GET" class="search-form">
             @csrf
             <label for="">Search:</label>
             <input type="Search" name="search">
@@ -50,7 +52,11 @@
             </tr>
             @endforeach
         </table>
+        <div>
+            {{$memberships->links()}}
+        </div>
     </div>
 
 </body>
+
 </html>

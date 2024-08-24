@@ -13,6 +13,14 @@ use Carbon\Carbon;
 
 class MemberController extends Controller
 {
+    public function dashboard()
+    {
+        $members_count = Member::count();
+        $memberships_count = Membership::count();
+        $bundles_count = Bundle::count();
+        return view("welcome",compact("members_count","memberships_count","bundles_count"));
+    }
+
     public function add_member()
     {
 
@@ -35,7 +43,7 @@ class MemberController extends Controller
 
     public function show_member()
     {
-        $members = Member::latest()->simplePaginate(2);
+        $members = Member::latest()->simplePaginate(10);
         $bundles = Bundle::all();
         return view("show-member", compact('members', 'bundles'));
     }
@@ -44,7 +52,7 @@ class MemberController extends Controller
     {
         $member = Member::findOrFail($id);
 
-        return view('edit_member',compact('member'));
+        return view('edit_member', compact('member'));
     }
 
     public function save_member($id)
@@ -59,7 +67,6 @@ class MemberController extends Controller
         $member->save();
 
         return redirect('show_member');
-
     }
     public function delete_member($id)
     {
@@ -114,6 +121,12 @@ class MemberController extends Controller
             case 'day':
                 $this->$end_date = $start_date->addDay()->toDateString();
                 break;
+            case '3 months':
+                $this->$end_date = $start_date->addMonths(3)->toDateString();
+                break;
+            case 'year':
+                $this->$end_date = $start_date->addYear()->toDateString();
+                break;
         }
 
         if ($membership) {
@@ -150,11 +163,10 @@ class MemberController extends Controller
 
     public function show_membership()
     {
-        $memberships = Membership::with('bundle','member')->get();
+        $memberships = Membership::with('bundle', 'member')->simplePaginate(10);
 
         return view('show_membership', compact('memberships'));
     }
-
 
     public function add_bundle()
     {
@@ -202,7 +214,7 @@ class MemberController extends Controller
     {
         $members = Member::whereAny(['first_name', 'last_name'], 'LIKE', '%' . $request->search . '%')->get('id');
 
-        $memberships = Membership::whereIn('member_id', $members)->get();
+        $memberships = Membership::whereIn('member_id', $members)->simplePaginate(10);
 
         return view('show_membership', compact('memberships'));
     }
@@ -211,7 +223,7 @@ class MemberController extends Controller
     {
         Membership::find($id)->delete();
 
-        return $this->show_membership();
+        return redirect('show_membership');
     }
 
     public function renew_membership($id)
@@ -232,6 +244,12 @@ class MemberController extends Controller
                 break;
             case 'day':
                 $this->$end_date = $start_date->addDay()->toDateString();
+                break;
+            case '3 months':
+                $this->$end_date = $start_date->addMonths(3)->toDateString();
+                break;
+            case 'year':
+                $this->$end_date = $start_date->addYear()->toDateString();
                 break;
         }
 
