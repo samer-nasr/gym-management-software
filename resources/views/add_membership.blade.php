@@ -14,20 +14,20 @@
 <body>
     @include('layouts.navigation')
 
-    <h2 class="title">Add membership</h2>
+    <h2 class="home_title">Add membership</h2>
     <div class="center">
-        <form class="center" action="{{url('add_membership_to_member',0)}}" method="POST">
+        <form class="center membership_form" action="{{url('add_membership_to_member',0)}}" method="POST">
             @csrf
-            <label for="">Member</label>
-            <select class="input-style" name="member" id="">
+            <label for="member">Member</label>
+            <select class="input-style" name="member" id="member">
                 <option value="">Select a Member</option>
                 @foreach ($members as $member)
                 <option value="{{$member->id}}">{{$member->first_name}} {{$member->last_name}}</option>
                 @endforeach
             </select>
 
-            <label for="">Bundle</label>
-            <select class="input-style" name="bundle" id="">
+            <label for="bundle">Bundle</label>
+            <select class="input-style" name="bundle" id="bundle">
                 <option value="">Select a Bundle</option>
                 @foreach ($bundles as $bundle)
                 <option value="{{$bundle->id}}">{{$bundle->name}}</option>

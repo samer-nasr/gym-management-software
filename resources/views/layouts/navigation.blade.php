@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" class="font-bold bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -6,7 +6,8 @@
                 <!-- Logo -->
                 <div class="flex items-center shrink-0">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block w-auto text-gray-800 fill-current h-9" />
+                        {{-- <x-application-logo class="block w-auto text-gray-800 fill-current h-9" /> --}}
+                        <img src="images/logo.png" class="block w-auto text-gray-800 fill-current h-9" alt="">
                     </a>
                 </div>
 
@@ -34,6 +35,10 @@
 
                     <x-nav-link :href="route('add_bundle')" :active="request()->routeIs('add_bundle')">
                         {{ __('Bundles') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('show_payement')" :active="request()->routeIs('show_payement')">
+                        {{ __('Payements') }}
                     </x-nav-link>
                 </div>
             </div>

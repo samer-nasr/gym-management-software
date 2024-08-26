@@ -14,26 +14,26 @@
 
 <body>
     @include('layouts.navigation')
-    <h2 class="title">Add New Member</h2>
+    <h2 class="home_title">Add New Member</h2>
 
     <div class="center form-container">
         <form class="center" action="{{url('add_new_member')}}" method="post">
             <h2 class="form-title">Enter Member Info</h2>
             @csrf
-            <label for="">First Name</label>
-            <input class="input-style" type="text" name="fname" required>
+            <label for="fname">First Name</label>
+            <input id="fname" class="input-style" type="text" name="fname" required>
 
-            <label for="">Last Name</label>
-            <input class="input-style" type="text" name="lname" required>
+            <label for="lname">Last Name</label>
+            <input id="lname" class="input-style" type="text" name="lname" required>
 
-            <label for="">Email</label>
-            <input class="input-style" type="email" name="email">
+            <label for="email">Email</label>
+            <input id="email" class="input-style" type="email" name="email">
 
-            <label for="">Phone</label>
-            <input class="input-style" type="number" name="phone" required>
+            <label for="phone">Phone</label>
+            <input id="phone" class="input-style" type="number" name="phone" required>
 
-            <label for="">Address</label>
-            <input class="input-style" type="text" name="address" required>
+            <label for="address">Address</label>
+            <input id="address" class="input-style" type="text" name="address" required>
 
             <input class="submit" type="submit" value="ADD">
 

@@ -15,6 +15,10 @@ Route::get('/', function () {
 Route::get('/dashboard', [MemberController::class, 'dashboard'])
     ->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('expired_memberships', [MemberController::class,'expired_memberships']);
+
+Route::get('search_for_expired_membership', [MemberController::class,'search_for_expired_membership']);
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -62,9 +66,11 @@ Route::get('delete_membership/{id}', [MemberController::class, 'delete_membershi
 
 Route::get('renew_membership/{id}', [MemberController::class, 'renew_membership'])->name('renew_membership');
 
-
-
 Route::get('edit_membership/{id}', [MemberController::class, 'edit_membership'])->name('edit_membership');
+
 Route::post('save_membership/{id}', [MemberController::class, 'save_membership'])->name('save_membership');
+
+Route::get('show_payement', [MemberController::class,'show_payement'])->name('show_payement');
+
 
 require __DIR__ . '/auth.php';

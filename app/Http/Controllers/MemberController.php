@@ -18,7 +18,25 @@ class MemberController extends Controller
         $members_count = Member::count();
         $memberships_count = Membership::count();
         $bundles_count = Bundle::count();
-        return view("welcome",compact("members_count","memberships_count","bundles_count"));
+
+        $expired_memberships = Membership::where("end_date","<", Carbon::now()->toDateString())->get();
+        $expired_memberships_count = $expired_memberships->count();
+        return view("welcome",compact("members_count","memberships_count","bundles_count","expired_memberships_count"));
+    }
+
+    public function expired_memberships()
+    {
+
+        $memberships = Membership::where("end_date","<", Carbon::now()->toDateString())->simplePaginate(10);
+        return view('show_membership', compact('memberships'));
+    }
+
+    public function search_for_expired_membership(Request $request)
+    {
+        $members = Member::whereAny(['first_name', 'last_name'], 'LIKE', '%' . $request->search . '%')->get('id');
+        $memberships = Membership::whereIn('member_id', $members)->where("end_date","<", Carbon::now()->toDateString())->simplePaginate(10);
+
+        return view('show_membership', compact('memberships'));
     }
 
     public function add_member()
@@ -281,6 +299,12 @@ class MemberController extends Controller
         return redirect('show_membership');
     }
 
+    public function show_payement()
+    {
+        $payements = Payement::with('member','bundle')->latest()->simplePaginate(10);
+
+        return view('show_payement', compact('payements'));
+    }
 
     public function setup()
     {

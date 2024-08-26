@@ -16,9 +16,9 @@
 
 
     <div class="column-container">
-        <div class="center form-container">
-            <h2 class="title">Add Bundle</h2>
-            <form class="center" action="{{url('add_new_bundle')}}" method="post">
+        <div class="center form-container bundle_form" >
+            <h2 class="home_title">Add Bundle</h2>
+            <form class="center bundle_form"  action="{{url('add_new_bundle')}}" method="post">
                 <h2 class="form-title">Enter Bundle Info</h2>
                 @csrf
                 <label for="name">Name</label>
@@ -33,8 +33,8 @@
         </div>
 
         <div class="center form-container">
-            <h2 class="title">Show Bundles</h2>
-            <table class="center">
+            <h2 class="home_title">Show Bundles</h2>
+            <table class="center" style="border: none;">
                 <tr>
                     <th>ID</th>
                     <th>Name</th>

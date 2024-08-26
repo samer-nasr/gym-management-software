@@ -2,7 +2,6 @@
     body {
         background-image: url('/images/img.jpg');
         background-size: 100%;
-
     }
 
     .title {
@@ -20,7 +19,17 @@
         border: 2px solid black;
         border-radius: 12px 0;
         box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5),
-                -5px -5px 10px rgba(255, 255, 255, 0.7);
+            -5px -5px 10px rgba(255, 255, 255, 0.7);
+    }
+
+    .membership_form
+    {
+        width: 60%;
+    }
+
+    .bundle_form
+    {
+        width: 60%;
     }
 
 
@@ -29,7 +38,7 @@
     }
 
     .submit {
-        width: 50%;
+        width: 30%;
         border: 2px solid black;
         border-radius: 12px 0;
         padding: 10px;
@@ -92,6 +101,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        flex-direction: column;
     }
 
     .search-button {
@@ -151,12 +161,19 @@
         font-size: 1.3em;
     }
 
-    .items-container {
+    .container {
         display: flex;
-        align-items: flex-start;
-        justify-content: space-around;
+        justify-content: flex-start;
+        flex-direction: column;
         width: 100vw;
         height: 100vh;
+    }
+
+    .items-container {
+        display: flex;
+        justify-content: space-around;
+        width: 100vw;
+        height: 40vh;
     }
 
     .item {
@@ -165,34 +182,51 @@
         align-items: center;
         flex-direction: column;
         width: 25%;
-        height: 20%;
+        height: 40%;
         margin-top: 5%;
         border: 2px solid black;
         border-radius: 12px;
         box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5),
-        -5px -5px 10px rgba(255, 255, 255, 0.7);
+            -5px -5px 10px rgba(255, 255, 255, 0.7);
         background-color: lightgrey;
         opacity: 0.8;
     }
 
-    .item:hover
-    {
+    .item:hover {
         opacity: 1;
     }
 
-    .item .item-title
-    {
+    .item .item-title {
         font-size: 1.5rem;
         font-weight: bold;
         cursor: default;
     }
 
-    .item .item-value
-    {
+    .item .item-value {
         font-size: 1.1rem;
         font-weight: 900;
         color: rgb(4, 4, 65);
         cursor: default;
+    }
 
+    .home_title {
+        font-size: 48px;
+        font-weight: bold;
+        text-transform: uppercase;
+        text-align: center;
+        color: #f8b400;
+        letter-spacing: 4px;
+        margin: 0;
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+
+    }
+
+    .logo-center
+    {
+        display: flex;
+        justify-content: center;
     }
 </style>
