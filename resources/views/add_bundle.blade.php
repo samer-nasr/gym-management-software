@@ -33,7 +33,7 @@
         </div>
 
         <div class="center form-container">
-            <h2 class="home_title">Show Bundles</h2>
+            <h2 class="home_title">Bundles</h2>
             <table class="center" style="border: none;">
                 <tr>
                     <th>ID</th>

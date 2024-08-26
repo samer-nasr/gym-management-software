@@ -14,16 +14,16 @@
 <body>
 
     @include('layouts.navigation')
-    @if (request()->routeIs('show_membership'))
-    <h2 class="home_title">Show Membership</h2>
+    @if (request()->routeIs('show_membership') || request()->routeIs('search_for_membership'))
+    <h2 class="home_title">Memberships</h2>
     @else
-    <h2 class="home_title">Show Expired Memberships</h2>
+    <h2 class="home_title">Expired Memberships</h2>
     @endif
 
 
     <div class="center ">
 
-        @if (request()->routeIs('show_membership'))
+        @if (   request()->routeIs('show_membership') || request()->routeIs('search_for_membership'))
         <form action="{{url('search_for_membership')}}" method="GET" class="search-form">
             @csrf
             <label for="search">Search:</label>

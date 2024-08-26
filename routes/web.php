@@ -72,5 +72,7 @@ Route::post('save_membership/{id}', [MemberController::class, 'save_membership']
 
 Route::get('show_payement', [MemberController::class,'show_payement'])->name('show_payement');
 
+Route::get('search_for_payement', [MemberController::class,'search_for_payement'])->name('search_for_payement');
+
 
 require __DIR__ . '/auth.php';

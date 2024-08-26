@@ -19,13 +19,17 @@
 
         <div class="items-container">
             <div class="item">
-                <h2 class="item-title">Numbers of Members :</h2>
-                <h3 class="item-value">{{ $members_count }}</h3>
+                <a href="{{url('show_member')}}">
+                    <h2 class="item-title">Numbers of Members :</h2>
+                    <h3 class="item-value" style="text-align: center;">{{ $members_count }}</h3>
+                </a>
             </div>
 
             <div class="item">
-                <h2 class="item-title">Numbers of Memberships :</h2>
-                <h3 class="item-value">{{ $memberships_count }}</h3>
+                <a href="{{url('show_membership')}}">
+                    <h2 class="item-title">Numbers of Memberships :</h2>
+                    <h3 class="item-value" style="text-align: center;">{{ $memberships_count }}</h3>
+                </a>
             </div>
 
         </div>
@@ -33,8 +37,10 @@
         <div class="items-container">
 
             <div class="item">
-                <h2 class="item-title">Numbers of Bundles :</h2>
-                <h3 class="item-value">{{ $bundles_count }}</h3>
+                <a href="{{'add_bundle'}}">
+                    <h2 class="item-title">Numbers of Bundles :</h2>
+                    <h3 class="item-value" style="text-align: center;">{{ $bundles_count }}</h3>
+                </a>
             </div>
 
             <div class="item">

@@ -13,7 +13,7 @@
 
 <body>
     @include('layouts.navigation')
-    <h2 class="home_title">Show Members</h2>
+    <h2 class="home_title">Members</h2>
 
     <div class="center ">
 

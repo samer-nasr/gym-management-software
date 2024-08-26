@@ -19,22 +19,22 @@ class MemberController extends Controller
         $memberships_count = Membership::count();
         $bundles_count = Bundle::count();
 
-        $expired_memberships = Membership::where("end_date","<", Carbon::now()->toDateString())->get();
+        $expired_memberships = Membership::where("end_date", "<", Carbon::now()->toDateString())->get();
         $expired_memberships_count = $expired_memberships->count();
-        return view("welcome",compact("members_count","memberships_count","bundles_count","expired_memberships_count"));
+        return view("welcome", compact("members_count", "memberships_count", "bundles_count", "expired_memberships_count"));
     }
 
     public function expired_memberships()
     {
 
-        $memberships = Membership::where("end_date","<", Carbon::now()->toDateString())->simplePaginate(10);
+        $memberships = Membership::where("end_date", "<", Carbon::now()->toDateString())->simplePaginate(10);
         return view('show_membership', compact('memberships'));
     }
 
     public function search_for_expired_membership(Request $request)
     {
         $members = Member::whereAny(['first_name', 'last_name'], 'LIKE', '%' . $request->search . '%')->get('id');
-        $memberships = Membership::whereIn('member_id', $members)->where("end_date","<", Carbon::now()->toDateString())->simplePaginate(10);
+        $memberships = Membership::whereIn('member_id', $members)->where("end_date", "<", Carbon::now()->toDateString())->simplePaginate(10);
 
         return view('show_membership', compact('memberships'));
     }
@@ -181,7 +181,7 @@ class MemberController extends Controller
 
     public function show_membership()
     {
-        $memberships = Membership::with('bundle', 'member')->simplePaginate(10);
+        $memberships = Membership::with('bundle', 'member')->latest('updated_at')->simplePaginate(10);
 
         return view('show_membership', compact('memberships'));
     }
@@ -230,9 +230,14 @@ class MemberController extends Controller
 
     public function search_for_membership(Request $request)
     {
-        $members = Member::whereAny(['first_name', 'last_name'], 'LIKE', '%' . $request->search . '%')->get('id');
+        // $members = Member::whereAny(['first_name', 'last_name'], 'LIKE', '%' . $request->search . '%')->get('id');
 
-        $memberships = Membership::whereIn('member_id', $members)->simplePaginate(10);
+        // $memberships = Membership::whereIn('member_id', $members)->simplePaginate(10);
+
+        $memberships = Membership::whereRelation('member','first_name','LIKE','%' . $request->search . '%')
+        ->orWhereRelation('member','last_name','LIKE','%' .$request->search. '%')
+        ->latest('updated_at')
+        ->simplePaginate(10);
 
         return view('show_membership', compact('memberships'));
     }
@@ -301,7 +306,16 @@ class MemberController extends Controller
 
     public function show_payement()
     {
-        $payements = Payement::with('member','bundle')->latest()->simplePaginate(10);
+        $payements = Payement::with('member', 'bundle')->latest()->simplePaginate(10);
+
+        return view('show_payement', compact('payements'));
+    }
+
+    public function search_for_payement(Request $request)
+    {
+        $payements = Payement::whereRelation('member', 'first_name', 'LIKE', '%' . $request->search . '%',)
+            ->orWhereRelation('member', 'last_name', 'LIKE', '%' . $request->search . '%')
+            ->simplePaginate(10);
 
         return view('show_payement', compact('payements'));
     }

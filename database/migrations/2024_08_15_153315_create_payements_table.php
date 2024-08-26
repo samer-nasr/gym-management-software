@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('payements', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('member_id')->references('id')->on('members');
-            $table->foreignId('bundle_id')->references('id')->on('bundles');
+            $table->foreignId('member_id')->references('id')->on('members')->cascadeOnDelete();
+            $table->foreignId('bundle_id')->references('id')->on('bundles')->cascadeOnDelete();
             $table->string('amount')->nullable();
             $table->timestamps();
         });
