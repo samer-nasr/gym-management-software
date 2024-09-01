@@ -22,8 +22,8 @@ class MembershipFactory extends Factory
             "bundle_duration"=> fake()->randomNumber(2),
             "member_id"=> Member::factory(),
             "bundle_id"=> fake()->numberBetween(1,3),
-            "start_date"=>fake()->dateTimeBetween("-2 days","now"),
-            'end_date'=> fake()->dateTimeBetween('now','2 months'),
+            "start_date"=>fake()->dateTimeBetween("-2 days","now")->format("Y-m-d"),
+            'end_date'=> fake()->dateTimeBetween('now','2 months')->format('Y-m-d'),
         ];
     }
 }

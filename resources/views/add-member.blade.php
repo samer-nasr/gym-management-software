@@ -30,7 +30,7 @@
             <input id="email" class="input-style" type="email" name="email">
 
             <label for="phone">Phone</label>
-            <input id="phone" class="input-style" type="number" name="phone" required>
+            <input id="phone" class="input-style" type="number" name="phone">
 
             <label for="address">Address</label>
             <input id="address" class="input-style" type="text" name="address" required>
