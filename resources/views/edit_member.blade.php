@@ -30,7 +30,7 @@
             <input class="input-style" type="email" name="email" value="{{$member->email}}">
 
             <label for="">Phone</label>
-            <input class="input-style" type="number" name="phone" value="{{$member->phone}}" required>
+            <input class="input-style" type="number" name="phone" value="{{$member->phone}}" >
 
             <label for="">Address</label>
             <input class="input-style" type="text" name="address" value="{{$member->address}}" required>

@@ -25,25 +25,25 @@ class DatabaseSeeder extends Seeder
 
         // Member::factory(10)->create();
 
-        Bundle::factory()->create([
-            'name' => 'day',
-            'price' => '5$',
-            'duration' => '1 day',
-        ]);
+        // Bundle::factory()->create([
+        //     'name' => 'day',
+        //     'price' => '5$',
+        //     'duration' => '1 day',
+        // ]);
 
-        Bundle::factory()->create([
-            'name' => 'week',
-            'price' => '15$',
-            'duration' => '7 days',
-        ]);
+        // Bundle::factory()->create([
+        //     'name' => 'week',
+        //     'price' => '15$',
+        //     'duration' => '7 days',
+        // ]);
 
-        Bundle::factory()->create([
-            'name' => 'month',
-            'price' => '25$',
-            'duration' => '31 day',
-        ]);
+        // Bundle::factory()->create([
+        //     'name' => 'month',
+        //     'price' => '25$',
+        //     'duration' => '31 day',
+        // ]);
 
-        Membership::factory(100)->create();
+        // Membership::factory(100)->create();
 
     }
 }
