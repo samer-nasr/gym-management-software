@@ -49,7 +49,7 @@
                     <td>{{ $bundle->price }}</td>
                     <td>
                         <div>
-                            <a class="delete-button" href="{{url('delete_bundle',$bundle->id)}}">Delete</a>
+                            {{-- <a class="delete-button" href="{{url('delete_bundle',$bundle->id)}}">Delete</a> --}}
                             <a class="edit-button" href="{{url('edit_bundle' , $bundle->id)}}">Edit</a>
                         </div>
                     </td>

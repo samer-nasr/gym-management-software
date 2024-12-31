@@ -63,9 +63,13 @@
 
     .input-style {
         width: 300px;
+        height: 50px;
         margin: 10px;
-        opacity: 0.7;
+        opacity: 0.9;
         background-color: lightgrey;
+        font-size: 1em;
+        color:black;
+        font-weight: bolder;
     }
 
     .input-style:hover {
@@ -85,11 +89,15 @@
 
     tr th {
         background-color: lightgrey;
-        opacity: 0.8;
+        opacity: 0.9;
+        font-size: 1.8em;
     }
 
     td {
-        font-weight: bold;
+        font-weight: bolder;
+        color: #f8b400;
+        background: rgba(0, 0, 0, 0.7);
+        font-size: 1.6em;
     }
 
     th {
@@ -228,5 +236,32 @@
     {
         display: flex;
         justify-content: center;
+    }
+
+    .total_row
+    {
+        background-color: lightgrey;
+        opacity: 0.9 ;
+    }
+    .total
+    {
+        background-color: red;
+    }
+
+    .daily_membership
+    {
+        text-align: center;
+        padding: 10px;
+        margin-bottom: 10px;
+        background-color: blue;
+        font-size: 1.2em;
+        border: 1px solid black;
+        border-radius: 8px;
+        font-weight: bolder;
+    }
+
+    .daily_membership:hover
+    {
+        opacity: 0.9;
     }
 </style>

@@ -36,13 +36,13 @@
             <input class="input-style" type="text" name="address" value="{{$member->address}}" required>
 
             <input class="submit" type="submit" value="Save">
-            <input form="delete-form" class="submit" style="background-color: red; margin-top: 0.7em" type="submit" value="Delete">
+            {{-- <input form="delete-form" class="submit" style="background-color: red; margin-top: 0.7em" type="submit" value="Delete"> --}}
         </form>
     </div>
 
-    <form class="hidden" action="{{url('delete_member',$member->id)}}" method="get" id="delete-form">
+    {{-- <form class="hidden" action="{{url('delete_member',$member->id)}}" method="get" id="delete-form">
         @csrf
-    </form>
+    </form> --}}
 </body>
 
 </html>

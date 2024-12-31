@@ -34,6 +34,7 @@ Route::middleware('auth')->group(function () {
     Route::get('edit_membership/{id}', [MemberController::class, 'edit_membership'])->name('edit_membership');
     Route::post('save_membership/{id}', [MemberController::class, 'save_membership'])->name('save_membership');
     Route::post('/add_membership_to_member/{id}', [MemberController::class, 'add_membership_to_member'])->name('add_membership_to_member');
+    Route::get('/add_daily_membership', [MemberController::class,'add_daily_membership'])->name('add_daily_membership');
 
     Route::get('add_member', [MemberController::class, 'add_member'])->name('add_member');
     Route::get('show_member', [MemberController::class, 'show_member'])->name('show_member');
@@ -53,6 +54,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('show_payement', [MemberController::class, 'show_payement'])->name('show_payement');
     Route::get('search_for_payement', [MemberController::class, 'search_for_payement']);
+
+    Route::get('/repair', [MemberController::class,'repair']);
 });
 
 

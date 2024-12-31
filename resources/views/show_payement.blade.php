@@ -18,8 +18,9 @@
 
         <form action="{{url('search_for_payement')}}" method="GET" class="mt-2 search-form">
             @csrf
-            <label for="search">Search:</label>
-            <input id="search" type="Search" name="search">
+            <label for="month">Search:</label>
+            {{-- <input id="search" type="date" name="search"> --}}
+            <input type="month" name="month" id="month">
             <input type="submit" value="Search" class="search-button">
         </form>
 
@@ -41,6 +42,14 @@
                 <td>{{ $payement->created_at}}</td>
             </tr>
             @endforeach
+
+            <tr class="total_row">
+                <td>Total</td>
+                <td></td>
+                <td></td>
+                <td class="total">{{ $total }}$</td>
+                <td></td>
+            </tr>
         </table>
         <div>
             {{ $payements->links() }}

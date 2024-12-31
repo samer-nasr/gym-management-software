@@ -17,6 +17,7 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
+                   
                     <x-nav-link :href="route('add_member')" :active="request()->routeIs('add_member')">
                         {{ __('Add Member') }}
                     </x-nav-link>

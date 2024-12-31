@@ -16,6 +16,7 @@
 
     <h2 class="home_title">Add membership</h2>
     <div class="center">
+        <a href="{{url('add_daily_membership')}}" class="daily_membership">Add Daily Membership</a>
         <form class="center membership_form" action="{{url('add_membership_to_member',0)}}" method="POST">
             @csrf
             <label for="member">Member</label>

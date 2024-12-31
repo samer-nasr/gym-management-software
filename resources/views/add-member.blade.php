@@ -33,7 +33,7 @@
             <input id="phone" class="input-style" type="number" name="phone">
 
             <label for="address">Address</label>
-            <input id="address" class="input-style" type="text" name="address" required>
+            <input id="address" class="input-style" type="text" name="address" >
 
             <input class="submit" type="submit" value="ADD">
 

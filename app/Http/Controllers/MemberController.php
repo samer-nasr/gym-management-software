@@ -234,10 +234,10 @@ class MemberController extends Controller
 
         // $memberships = Membership::whereIn('member_id', $members)->simplePaginate(10);
 
-        $memberships = Membership::whereRelation('member','first_name','LIKE','%' . $request->search . '%')
-        ->orWhereRelation('member','last_name','LIKE','%' .$request->search. '%')
-        ->latest('updated_at')
-        ->simplePaginate(10);
+        $memberships = Membership::whereRelation('member', 'first_name', 'LIKE', '%' . $request->search . '%')
+            ->orWhereRelation('member', 'last_name', 'LIKE', '%' . $request->search . '%')
+            ->latest('updated_at')
+            ->simplePaginate(10);
 
         return view('show_membership', compact('memberships'));
     }
@@ -308,16 +308,56 @@ class MemberController extends Controller
     {
         $payements = Payement::with('member', 'bundle')->latest()->simplePaginate(10);
 
-        return view('show_payement', compact('payements'));
+        $total = Payement::sum('amount');
+
+        // $total = Payement::selectRaw("SUM(CAST(REPLACE(amount, '$', '') AS REAL)) as total")->first()->total;
+
+        return view('show_payement', compact('payements', 'total'));
     }
 
     public function search_for_payement(Request $request)
     {
-        $payements = Payement::whereRelation('member', 'first_name', 'LIKE', '%' . $request->search . '%',)
-            ->orWhereRelation('member', 'last_name', 'LIKE', '%' . $request->search . '%')
-            ->simplePaginate(10);
 
-        return view('show_payement', compact('payements'));
+        // $payements = Payement::whereRelation('member', 'first_name', 'LIKE', '%' . $request->search . '%',)
+        //     ->orWhereRelation('member', 'last_name', 'LIKE', '%' . $request->search . '%')
+        //     ->simplePaginate(10);
+
+        $payements = Payement::where('created_at', 'LIKE', $request->month . '%')->simplePaginate(10);
+
+        $total = Payement::where('created_at', 'LIKE', $request->month . '%')->sum('amount');
+
+
+        return view('show_payement', compact('payements', 'total'));
+    }
+
+    public function add_daily_membership()
+    {
+        $bundle_id = Bundle::where('name', '=', 'day')->first()->id;
+        $member_id = Member::where('first_name', '=', 'day')->first()->id;
+
+        $member_exist = Member::where('first_name', '=', 'day')->exists();
+
+        if ($member_exist) {
+            $this->pay($member_id, $bundle_id);
+            return redirect('show_payement');
+        } else {
+            dd('Member name day not exist!!');
+        }
+    }
+
+    public function repair()
+    {
+        $payments = Payement::all();
+
+        foreach ($payments as $payment) {
+            // Remove the $ sign from the beginning and append it to the end
+            $newAmount = str_replace('$', '', $payment->amount) . '$';
+
+            // Update the amount and save the record
+            $payment->amount = $newAmount;
+            $payment->save();
+        }
+        return redirect('dashboard');
     }
 
     public function setup()
